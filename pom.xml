@@ -46,11 +46,31 @@
 					<executable>java</executable>
 					<workingDirectory>${project.build.directory}/classes</workingDirectory>
 					<mainClass>weatherly.AppMain</mainClass>
-
 				</configuration>
 			</plugin>
 
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/release/lib</outputDirectory>
+							<overWriteReleases>false</overWriteReleases>
+							<overWriteSnapshots>false</overWriteSnapshots>
+							<overWriteIfNewer>true</overWriteIfNewer>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			
+			
+			<!--<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<version>2.4.1</version>
@@ -61,8 +81,13 @@
 					</descriptorRefs>
 					<archive>
 						<manifest>
+							<addClasspath>true</addClasspath>
+							<addExtensions>false</addExtensions>
 							<mainClass>weatherly.AppMain</mainClass>
 						</manifest>
+						<manifestEntries>
+							<Class-Path>lib/</Class-Path>
+						</manifestEntries>
 					</archive>
 				</configuration>
 				<executions>
@@ -74,7 +99,7 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin>-->
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -82,33 +107,102 @@
 				<version>3.0.2</version>
 				<executions>
 					<execution>
-						<id>copy-resources-1</id>
+						<id>copy-resources-for-package</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
 						<configuration>
-							<outputDirectory>${project.build.directory}/weatherly/</outputDirectory>
+							<outputDirectory>${project.build.directory}/release</outputDirectory>
 							<encoding>UTF-8</encoding>
-						</configuration>
-					</execution>
-					<execution>
-						<id>copy-resources-2</id>
-						<configuration>
-							<encoding>UTF-8</encoding>
+							<resources>
+								<resource>
+									<directory>src/config</directory>
+								</resource>
+							</resources>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
 
-			<plugin>
+			<!--<plugin>
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>2.3.1</version>
 				<executions>
 					<execution>
 						<id>default-jar</id>
-						<!-- put the default-jar in the none phase to skip it from being created -->
+						
 						<phase>none</phase>
 					</execution>
 				</executions>
+			</plugin>-->
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<outputDirectory>${project.build.directory}/release</outputDirectory>
+					<finalName>weatherly</finalName>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<!-- <classpathPrefix>lib</classpathPrefix> -->
+							<!-- <mainClass>test.org.Cliente</mainClass> -->
+							<mainClass>weatherly.AppMain</mainClass>
+							<classpathPrefix>lib</classpathPrefix>
+						</manifest>
+						<manifestEntries>
+							<Class-Path>.</Class-Path>
+						</manifestEntries>
+					</archive>
+					<excludes>
+						<exclude>**/meters.xml</exclude>
+						<exclude>**/sources.xml</exclude>
+					</excludes>
+				</configuration>
 			</plugin>
-
+			
+			<plugin>
+	          <groupId>com.akathist.maven.plugins.launch4j</groupId>
+	          <artifactId>launch4j-maven-plugin</artifactId>
+	          <executions>
+	            <execution>
+	              <id>l4j-clui</id>
+	              <phase>package</phase>
+	              <goals>
+	              	<goal>launch4j</goal>
+	              </goals>
+	              <configuration>
+	                <headerType>gui</headerType>
+	                <outfile>${project.build.directory}/release/weatherly.exe</outfile>
+	                <jar>${project.build.directory}/release/weatherly.jar</jar>
+	                <errTitle>Weatherly</errTitle>
+	                <classPath>
+	                  <mainClass>weatherly.AppMain</mainClass>
+	                  <addDependencies>false</addDependencies>
+	                  <preCp>anything</preCp>
+	                </classPath>
+	                <jre>
+	                  <minVersion>1.5.0</minVersion>
+	                  <opts>
+	                    <opt>-Djava.endorsed.dirs=./endorsed</opt>
+	                  </opts>
+	                </jre>
+	                <versionInfo>
+	                  <fileVersion>1.2.3.4</fileVersion>
+	                  <txtFileVersion>txt file version?</txtFileVersion>
+	                  <fileDescription>a description</fileDescription>
+	                  <copyright>my copyright</copyright>
+	                  <productVersion>4.3.2.1</productVersion>
+	                  <txtProductVersion>txt product version</txtProductVersion>
+	                  <productName>E-N-C-C</productName>
+	                  <internalName>ccne</internalName>
+	                  <originalFilename>weatherly.exe</originalFilename>
+	                </versionInfo>
+	              </configuration>
+	            </execution>
+	          </executions>
+	        </plugin>
 
 		</plugins>
 	</build>

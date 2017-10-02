@@ -78,8 +78,12 @@ public class AppMain extends Application {
     }
 
     private static void setupConfig() {
+	AppMain.log.info("[CONFIG] Looking for external config files... ");
+
 	AppMain.dataSources = JAXB.unmarshal(AppMain.class.getResource(AppMain.SOURCES_CONFIG), DataSources.class);
 	AppMain.meters = JAXB.unmarshal(AppMain.class.getResource(AppMain.SOURCES_METERS), Meters.class);
+
+	AppMain.log.info("[CONFIG] Search done.");
     }
 
     private static void setupExceptionHandler() {
