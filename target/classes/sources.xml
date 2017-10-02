@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<sources interval="360">
-	<source provider="weatherly.datasource.sources.PowietrzeGiosSource"></source>
-	<source provider="weatherly.datasource.sources.OpenWeatherMapSource"></source>
-	<source provider="weatherly.datasource.sources.MeteoWawSource"></source>
-</sources>
