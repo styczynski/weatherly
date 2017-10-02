@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import weatherly.controller.HeaderPaneMainController?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="weatherly.controller.HeaderPaneMainController" style="-fx-background-color: #0074D9;"
+	fx:id="containerPane">
+	<children>
+		<GridPane alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308"
+			minHeight="-Infinity" style="-fx-background-color: transparent;"
+			AnchorPane.bottomAnchor="-5.0" AnchorPane.rightAnchor="-5.0"
+			AnchorPane.leftAnchor="-5.0" AnchorPane.topAnchor="-5.0">
+			<columnConstraints>
+				<ColumnConstraints fillWidth="false" hgrow="NEVER"
+					maxWidth="30.0" minWidth="10.0" prefWidth="30.0" />
+				<ColumnConstraints fillWidth="false" hgrow="NEVER"
+					maxWidth="30.0" minWidth="10.0" prefWidth="30.0" />
+			</columnConstraints>
+			<rowConstraints>
+				<RowConstraints minHeight="10.0" prefHeight="30.0"
+					vgrow="SOMETIMES" />
+			</rowConstraints>
+			<children>
+				<Button fx:id="buttonQuit" alignment="CENTER" contentDisplay="CENTER"
+					mnemonicParsing="false"
+					style="-fx-background-radius: 0; -fx-background-color: transparent; -fx-background-insets: 0;"
+					GridPane.columnIndex="3" GridPane.vgrow="NEVER">
+					<graphic>
+						<FontIcon fx:id="buttonQuitIcon" iconLiteral="fa-sign-out"
+							iconSize="20" />
+					</graphic>
+				</Button>
+				<Button fx:id="buttonAbout" alignment="CENTER"
+					contentDisplay="CENTER" mnemonicParsing="false"
+					style="-fx-background-radius: 0; -fx-background-color: transparent; -fx-background-insets: 0;"
+					GridPane.columnIndex="2" GridPane.vgrow="NEVER">
+					<graphic>
+						<FontIcon fx:id="buttonAboutIcon" iconLiteral="fa-question-circle"
+							iconSize="20" />
+					</graphic>
+				</Button>
+				<Button fx:id="buttonSettings" alignment="CENTER"
+					contentDisplay="CENTER" mnemonicParsing="false"
+					style="-fx-background-radius: 0; -fx-background-color: transparent; -fx-background-insets: 0;"
+					GridPane.columnIndex="1" GridPane.vgrow="NEVER">
+					<graphic>
+						<FontIcon fx:id="buttonSettingsIcon" iconLiteral="fa-cog"
+							iconSize="20" />
+					</graphic>
+				</Button>
+				<Button fx:id="buttonRefresh" alignment="CENTER"
+					contentDisplay="CENTER" mnemonicParsing="false"
+					style="-fx-background-radius: 0; -fx-background-color: transparent; -fx-background-insets: 0;"
+					GridPane.columnIndex="0" GridPane.vgrow="NEVER">
+					<graphic>
+						<FontIcon fx:id="buttonRefreshIcon" iconLiteral="fa-refresh"
+							iconSize="20" />
+					</graphic>
+				</Button>
+			</children>
+		</GridPane>
+		<Label fx:id="labelText" alignment="TOP_LEFT"
+			style="-fx-background-color: transparent;" text="Weatherly" textFill="#FFFFFF"
+			AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="5.0">
+			<font>
+				<Font name="System Bold" size="16.0" />
+			</font>
+		</Label>
+	</children>
+</AnchorPane>

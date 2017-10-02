@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import weatherly.views.SourcesSelectView?>
+<?import weatherly.meters.GeneralMeter?>
+
+
+<BorderPane prefHeight="416.0" prefWidth="227.0"
+	style="-fx-border-color: transparent;" xmlns="http://javafx.com/javafx/8"
+	xmlns:fx="http://javafx.com/fxml/1" id="main" stylesheets="@../css/weatherly.css"
+	styleClass="body">
+	<center>
+		<GridPane
+			style="-fx-background-color: rgb(255,255,255); -fx-border-color: transparent;"
+			BorderPane.alignment="CENTER">
+			<children>
+				<AnchorPane>
+					<TextFlow AnchorPane.topAnchor="7.0">
+						<Text
+							text="${'About the app:\n\nThis app was written by\nPiotr Styczynski (C)\n\nIts based on most available libraries\nfound in the internet:\n* Ikonli\n* RxJavaFx + JavaFx\n* Gson\n* POJava\n\n'}">
+						</Text>
+					</TextFlow>
+				</AnchorPane>
+			</children>
+			<padding>
+				<Insets top="30" right="10" bottom="10" left="10" />
+			</padding>
+			<columnConstraints>
+				<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+			</columnConstraints>
+			<rowConstraints>
+				<RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+			</rowConstraints>
+		</GridPane>
+	</center>
+	<top>
+		<fx:include source="./header-pane-sub.fxml" />
+	</top>
+</BorderPane>
+

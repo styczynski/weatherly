@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import weatherly.views.WeatherPane?>
+<?import weatherly.meters.GeneralMeter?>
+
+<!-- <HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" 
+	alignment="CENTER" prefHeight="102.0" prefWidth="620.0" spacing="10.0" style="-fx-border-color: 
+	transparent;"> -->
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+	prefHeight="102.0" prefWidth="620.0" style="-fx-border-color: transparent;">
+	<children>
+		<VBox fx:id="meterIconContainer" alignment="CENTER"
+			AnchorPane.leftAnchor="40.0">
+
+		</VBox>
+		<Label fx:id="meterText" alignment="CENTER" text=""
+			AnchorPane.leftAnchor="80.0">
+			<font>
+				<Font size="16.0" />
+			</font>
+			<opaqueInsets>
+				<Insets />
+			</opaqueInsets>
+		</Label>
+	</children>
+	<opaqueInsets>
+		<Insets />
+	</opaqueInsets>
+</AnchorPane>
+
