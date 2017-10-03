@@ -69,38 +69,6 @@
 				</executions>
 			</plugin>
 
-
-			<!--<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<version>2.4.1</version>
-				<configuration>
-					<outputDirectory>${project.build.directory}/weatherly/</outputDirectory>
-					<descriptorRefs>
-						<descriptorRef>jar-with-dependencies</descriptorRef>
-					</descriptorRefs>
-					<archive>
-						<manifest>
-							<addClasspath>true</addClasspath>
-							<addExtensions>false</addExtensions>
-							<mainClass>weatherly.AppMain</mainClass>
-						</manifest>
-						<manifestEntries>
-							<Class-Path>lib/</Class-Path>
-						</manifestEntries>
-					</archive>
-				</configuration>
-				<executions>
-					<execution>
-						<id>make-assembly</id>
-						<phase>package</phase>
-						<goals>
-							<goal>single</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>-->
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
@@ -119,35 +87,28 @@
 								<resource>
 									<directory>src/config</directory>
 								</resource>
+								<resource>
+									<directory>.</directory>
+									<includes>
+										<include>LICENSE</include>
+									</includes>
+								</resource>
 							</resources>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
 
-			<!--<plugin>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>2.3.1</version>
-				<executions>
-					<execution>
-						<id>default-jar</id>
-
-						<phase>none</phase>
-					</execution>
-				</executions>
-			</plugin>-->
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.4</version>
 				<configuration>
 					<outputDirectory>${project.build.directory}/release</outputDirectory>
 					<finalName>weatherly</finalName>
 					<archive>
 						<manifest>
 							<addClasspath>true</addClasspath>
-							<!-- <classpathPrefix>lib</classpathPrefix> -->
-							<!-- <mainClass>test.org.Cliente</mainClass> -->
 							<mainClass>weatherly.AppMain</mainClass>
 							<classpathPrefix>lib</classpathPrefix>
 						</manifest>
@@ -163,63 +124,68 @@
 			</plugin>
 
 			<plugin>
-        <groupId>com.akathist.maven.plugins.launch4j</groupId>
-        <artifactId>launch4j-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>l4j-clui</id>
-            <phase>package</phase>
-            <goals>
-            	<goal>launch4j</goal>
-            </goals>
-            <configuration>
-              <headerType>gui</headerType>
-              <outfile>${project.build.directory}/release/weatherly.exe</outfile>
-							<icon>src/main/resources/icons/weatherly64.png</icon>
-              <jar>${project.build.directory}/release/weatherly.jar</jar>
-              <errTitle>Weatherly</errTitle>
-              <classPath>
-                <mainClass>weatherly.AppMain</mainClass>
-                <addDependencies>false</addDependencies>
-                <preCp>anything</preCp>
-              </classPath>
-              <jre>
-                <minVersion>1.5.0</minVersion>
-                <opts>
-                  <opt>-Djava.endorsed.dirs=./endorsed</opt>
-                </opts>
-              </jre>
-              <versionInfo>
-                <fileVersion>1.0.0.0</fileVersion>
-                <txtFileVersion>Alpha release</txtFileVersion>
-                <fileDescription>Weather fetching application</fileDescription>
-                <copyright>Piotr Styczynski MIT License</copyright>
-                <productVersion>1.0.0.0</productVersion>
-                <txtProductVersion>Alpha release</txtProductVersion>
-                <productName>Weatherly</productName>
-                <internalName>weatherly</internalName>
-                <originalFilename>weatherly.exe</originalFilename>
-              </versionInfo>
-            </configuration>
-          </execution>
-        </executions>
-	    </plugin>
-
+				<groupId>com.akathist.maven.plugins.launch4j</groupId>
+				<artifactId>launch4j-maven-plugin</artifactId>
+				<version>1.7.21</version>
+				<executions>
+				  <execution>
+					<id>l4j-clui</id>
+					<phase>package</phase>
+					<goals>
+						<goal>launch4j</goal>
+					</goals>
+					<configuration>
+					  <headerType>gui</headerType>
+					  <outfile>${project.build.directory}/release/weatherly.exe</outfile>
+					  <icon>src/main/resources/icons/weatherly.ico</icon>
+					  <jar>${project.build.directory}/release/weatherly.jar</jar>
+					  <errTitle>Weatherly</errTitle>
+					  <classPath>
+						<mainClass>weatherly.AppMain</mainClass>
+						<addDependencies>false</addDependencies>
+						<preCp>anything</preCp>
+					  </classPath>
+					  <jre>
+						<minVersion>1.5.0</minVersion>
+						<opts>
+						  <opt>-Djava.endorsed.dirs=./endorsed</opt>
+						</opts>
+					  </jre>
+					  <versionInfo>
+						<fileVersion>1.0.0.0</fileVersion>
+						<txtFileVersion>Alpha release</txtFileVersion>
+						<fileDescription>Weather fetching application</fileDescription>
+						<copyright>Piotr Styczynski MIT License</copyright>
+						<productVersion>1.0.0.0</productVersion>
+						<txtProductVersion>Alpha release</txtProductVersion>
+						<productName>Weatherly</productName>
+						<internalName>weatherly</internalName>
+						<originalFilename>weatherly.exe</originalFilename>
+					  </versionInfo>
+					</configuration>
+				  </execution>
+				</executions>
+			</plugin>
+				
 			<plugin>
-          <groupId>external.atlassian.jgitflow</groupId>
-          <artifactId>jgitflow-maven-plugin</artifactId>
-          <version>1.0-m5.1</version>
-          <configuration>
-						<flowInitContext>
-							 <masterBranchName>master</masterBranchName>
-							 <developBranchName>dev</developBranchName>
-							 <featureBranchPrefix>feature-</featureBranchPrefix>
-							 <releaseBranchPrefix>release-</releaseBranchPrefix>
-							 <hotfixBranchPrefix>hotfix-</hotfixBranchPrefix>
-							 <versionTagPrefix>weatherly-</versionTagPrefix>
-						 </flowInitContext>
-          </configuration>
-      </plugin>
+				<groupId>com.ruleoftech</groupId>
+				<artifactId>markdown-page-generator-plugin</artifactId>
+				<version>1.0.0</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<inputDirectory>.</inputDirectory>
+					<outputDirectory>${project.build.directory}/release</outputDirectory>
+					<inputEncoding>UTF-8</inputEncoding>
+					<outputEncoding>ISO-8859-15</outputEncoding>
+				</configuration>
+			</plugin>
 
 		</plugins>
 	</build>
