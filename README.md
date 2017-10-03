@@ -41,5 +41,4 @@ You can also run `java -jar weatherly.jar` on X-nix machines.
 
 [link isis97]: http://styczynski.ml
 [link sts]: http://styczynski.ml
-[link waccgl]: https://github.com/isis97/waccgl
-[link download latest]: https://github.com/isis97/TicTacConsole/raw/release/release/SCGL.zip
+[link download latest]: https://github.com/styczynski/weatherly/archive/1.0.0.zip
