@@ -68,8 +68,8 @@
 					</execution>
 				</executions>
 			</plugin>
-			
-			
+
+
 			<!--<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
@@ -131,12 +131,12 @@
 				<executions>
 					<execution>
 						<id>default-jar</id>
-						
+
 						<phase>none</phase>
 					</execution>
 				</executions>
 			</plugin>-->
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
@@ -161,48 +161,65 @@
 					</excludes>
 				</configuration>
 			</plugin>
-			
+
 			<plugin>
-	          <groupId>com.akathist.maven.plugins.launch4j</groupId>
-	          <artifactId>launch4j-maven-plugin</artifactId>
-	          <executions>
-	            <execution>
-	              <id>l4j-clui</id>
-	              <phase>package</phase>
-	              <goals>
-	              	<goal>launch4j</goal>
-	              </goals>
-	              <configuration>
-	                <headerType>gui</headerType>
-	                <outfile>${project.build.directory}/release/weatherly.exe</outfile>
-	                <jar>${project.build.directory}/release/weatherly.jar</jar>
-	                <errTitle>Weatherly</errTitle>
-	                <classPath>
-	                  <mainClass>weatherly.AppMain</mainClass>
-	                  <addDependencies>false</addDependencies>
-	                  <preCp>anything</preCp>
-	                </classPath>
-	                <jre>
-	                  <minVersion>1.5.0</minVersion>
-	                  <opts>
-	                    <opt>-Djava.endorsed.dirs=./endorsed</opt>
-	                  </opts>
-	                </jre>
-	                <versionInfo>
-	                  <fileVersion>1.2.3.4</fileVersion>
-	                  <txtFileVersion>txt file version?</txtFileVersion>
-	                  <fileDescription>a description</fileDescription>
-	                  <copyright>my copyright</copyright>
-	                  <productVersion>4.3.2.1</productVersion>
-	                  <txtProductVersion>txt product version</txtProductVersion>
-	                  <productName>E-N-C-C</productName>
-	                  <internalName>ccne</internalName>
-	                  <originalFilename>weatherly.exe</originalFilename>
-	                </versionInfo>
-	              </configuration>
-	            </execution>
-	          </executions>
-	        </plugin>
+        <groupId>com.akathist.maven.plugins.launch4j</groupId>
+        <artifactId>launch4j-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>l4j-clui</id>
+            <phase>package</phase>
+            <goals>
+            	<goal>launch4j</goal>
+            </goals>
+            <configuration>
+              <headerType>gui</headerType>
+              <outfile>${project.build.directory}/release/weatherly.exe</outfile>
+							<icon>src/main/resources/icons/weatherly64.png</icon>
+              <jar>${project.build.directory}/release/weatherly.jar</jar>
+              <errTitle>Weatherly</errTitle>
+              <classPath>
+                <mainClass>weatherly.AppMain</mainClass>
+                <addDependencies>false</addDependencies>
+                <preCp>anything</preCp>
+              </classPath>
+              <jre>
+                <minVersion>1.5.0</minVersion>
+                <opts>
+                  <opt>-Djava.endorsed.dirs=./endorsed</opt>
+                </opts>
+              </jre>
+              <versionInfo>
+                <fileVersion>1.0.0.0</fileVersion>
+                <txtFileVersion>Alpha release</txtFileVersion>
+                <fileDescription>Weather fetching application</fileDescription>
+                <copyright>Piotr Styczynski MIT License</copyright>
+                <productVersion>1.0.0.0</productVersion>
+                <txtProductVersion>Alpha release</txtProductVersion>
+                <productName>Weatherly</productName>
+                <internalName>weatherly</internalName>
+                <originalFilename>weatherly.exe</originalFilename>
+              </versionInfo>
+            </configuration>
+          </execution>
+        </executions>
+	    </plugin>
+
+			<plugin>
+          <groupId>external.atlassian.jgitflow</groupId>
+          <artifactId>jgitflow-maven-plugin</artifactId>
+          <version>1.0-m5.1</version>
+          <configuration>
+						<flowInitContext>
+							 <masterBranchName>master</masterBranchName>
+							 <developBranchName>dev</developBranchName>
+							 <featureBranchPrefix>feature-</featureBranchPrefix>
+							 <releaseBranchPrefix>release-</releaseBranchPrefix>
+							 <hotfixBranchPrefix>hotfix-</hotfixBranchPrefix>
+							 <versionTagPrefix>weatherly-</versionTagPrefix>
+						 </flowInitContext>
+          </configuration>
+      </plugin>
 
 		</plugins>
 	</build>
