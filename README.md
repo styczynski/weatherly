@@ -1,4 +1,4 @@
-[![Made by Styczynsky Digital Systems][badge sts]][link isis97]
+[![Made by Styczynsky Digital Systems][badge sts]][link styczynski]
 
 
 # ![Logo][logo] Weatherly &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :cloud: [![Download][badge download]][link download latest] :zap:
@@ -107,6 +107,6 @@ The example file looks like this:
 
 [logo]: https://raw.githubusercontent.com/styczynski/weatherly/master/src/main/resources/icons/weatherly32.png
 
-[link isis97]: http://styczynski.ml
-[link sts]: http://styczynski.ml
+[link styczynski]: http://styczynski.in
+[link sts]: http://styczynski.in
 [link download latest]: https://github.com/styczynski/weatherly/archive/1.0.0.zip
